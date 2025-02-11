@@ -20,8 +20,7 @@ def login(request):
             password = request.POST['password']
         )
         if user is None:
-            template_data['error'] =
-                'The username or password is incorrect.'
+            template_data['error'] = 'The username or password is incorrect.'
             return render(request, 'accounts/login.html',
                 {'template_data': template_data})
         else:
