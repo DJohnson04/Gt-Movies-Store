@@ -51,3 +51,22 @@ def orders(request):
     template_data['orders'] = request.user.order_set.all()
     return render(request, 'accounts/orders.html',
         {'template_data': template_data})
+
+
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
+import logging
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'accounts/password_reset.html'
+    email_template_name = 'accounts/password_reset_email.html'
+    subject_template_name = 'accounts/password_reset_subject.txt'
+    success_url = reverse_lazy('password_reset_done')
+
+    def form_valid(self, form):
+        logging.info("Password reset form is valid. Sending email.")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        logging.error(f"Password reset form is invalid: {form.errors}")
+        return super().form_invalid(form)
