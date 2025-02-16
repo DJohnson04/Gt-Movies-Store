@@ -10,13 +10,6 @@
             <hr />
             <form method="POST">
               {% csrf_token %}
-              <p>
-                <label for="email">Email</label>
-                <input id="email" type="email"
-                       name="email" required
-                       autocomplete="current-email"
-                       class="form-control">
-              </p>
               {{ template_data.form.as_p }}
               <button type="submit"
                 class="btn bg-dark text-white">Sign Up

@@ -17,7 +17,7 @@ class CustomUserCreationForm(UserCreationForm):
             self.fields[fieldname].widget.attrs.update(
                 {'class': 'form-control'})
 
-class Meta:
+    class Meta:
         model = User  # Ensure the form saves email to the User model
         fields = ["username", "email", "password1", "password2"]
 
